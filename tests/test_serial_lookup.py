@@ -324,6 +324,42 @@ async def test_state_all_has_no_prefix_filter(service):
     }
 
 
+async def test_state_all_list_is_not_sorted_by_blm(service):
+    # D-067: BLM can't finish a sorted nationwide "contains" search.
+    service.count = 1
+    service.matches = [_row(1)]
+    await call(serial_number="13342", state="ALL")
+    listing = next(c for c in service.calls if service.kind(c) == "list")
+    assert "orderByFields" not in listing
+    assert listing["resultRecordCount"] == 10
+
+
+async def test_state_all_matches_sorted_locally(service):
+    service.count = 3
+    service.matches = [
+        {**_row(5), "CSE_NR": "NV101334205"},
+        {**_row(7), "CSE_NR": "AZ101334207"},
+        {**_row(2), "CSE_NR": "MT101334202"},
+    ]
+    result = await call(serial_number="13342", state="ALL")
+    assert [m["serial_number"] for m in result["matches"]] == [
+        "AZ101334207",
+        "MT101334202",
+        "NV101334205",
+    ]
+
+
+async def test_state_all_more_than_shown_does_not_say_first(service):
+    service.count = 25
+    service.matches = [_row(n) for n in range(10)]
+    result = await call(serial_number="13342", state="ALL")
+    assert result["summary"] == (
+        "Partial match: 25 claims nationwide contain 13342. "
+        "Showing 10 of them, sorted by serial number."
+    )
+    assert result["hint"] == "Ask for more of the serial number to narrow the search."
+
+
 async def test_state_all_partial_uses_longer_timeout(service):
     await call(serial_number="13342", state="ALL")
     assert service.timeouts["exact"] == [DEFAULT_TIMEOUT]

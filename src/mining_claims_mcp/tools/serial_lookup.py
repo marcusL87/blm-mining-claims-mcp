@@ -223,24 +223,26 @@ def register(mcp: FastMCP) -> None:
         where = f"(CSE_NR LIKE {contains} OR LEG_CSE_NR LIKE {contains})"
         area = "nationwide"
         timeout = NATIONWIDE_TIMEOUT
-        if state is not OfficeCode.ALL:
+        list_params: dict[str, Any] = {
+            "where": where,
+            "outFields": LIST_FIELDS,
+            "returnGeometry": "false",
+            "resultRecordCount": MAX_PARTIAL_RESULTS,
+        }
+        nationwide = state is OfficeCode.ALL
+        if not nationwide:
             where = f"CSE_NR LIKE {sql_quote(state.value + '%')} AND {where}"
             area = f"in the {state.label} office ({state.value})"
             timeout = DEFAULT_TIMEOUT
+            # Sorting by BLM is fine within one office. Nationwide, BLM can't
+            # finish a sorted "contains" search (error after 180 s on Nov 22;
+            # unsorted 37 s), so those matches are sorted here instead (D-067).
+            list_params.update(where=where, orderByFields="CSE_NR")
 
         try:
             count_payload, list_payload = await asyncio.gather(
                 query({"where": where, "returnCountOnly": "true"}, timeout),
-                query(
-                    {
-                        "where": where,
-                        "outFields": LIST_FIELDS,
-                        "returnGeometry": "false",
-                        "orderByFields": "CSE_NR",
-                        "resultRecordCount": MAX_PARTIAL_RESULTS,
-                    },
-                    timeout,
-                ),
+                query(list_params, timeout),
             )
         except UpstreamServiceError:
             return _service_error()
@@ -249,6 +251,8 @@ def register(mcp: FastMCP) -> None:
             _list_entry(f.get("attributes", {}))
             for f in list_payload.get("features", [])
         ]
+        if nationwide:
+            matches.sort(key=lambda m: m["serial_number"] or "")
         total = int(count_payload.get("count", len(matches)))
         if not matches:
             if problem := await _incomplete_check():
@@ -277,7 +281,12 @@ def register(mcp: FastMCP) -> None:
             "matches": matches,
         }
         if total > len(matches):
-            summary += f" Showing the first {len(matches)}, sorted by serial number."
+            # Nationwide, BLM didn't sort, so these aren't the lowest serials
+            # (D-067).
+            shown = (
+                f"{len(matches)} of them" if nationwide else f"the first {len(matches)}"
+            )
+            summary += f" Showing {shown}, sorted by serial number."
             result["hint"] = "Ask for more of the serial number to narrow the search."
         result["summary"] = summary
         return result

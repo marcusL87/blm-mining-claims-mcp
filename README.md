@@ -17,8 +17,9 @@ The evaluation report, slide deck and demo video were submitted separately.
 | Server setup and the instructions sent to the model | [`src/mining_claims_mcp/app.py`](src/mining_claims_mcp/app.py) |
 | Data source settings | [`src/mining_claims_mcp/config.py`](src/mining_claims_mcp/config.py) |
 | The evaluation questions | [`eval/questions.md`](eval/questions.md) (24 questions with expected answers) |
-| Evaluation results | [`eval/results_2026-11-17.md`](eval/results_2026-11-17.md) |
-| The tests | [`tests/`](tests/) (595 tests, no network calls) |
+| Evaluation results: same model with and without the server | [`eval/agent_luna_2026-11-22.md`](eval/agent_luna_2026-11-22.md) (with the server: 19 of 24 correct, 24 of 24 within scope) and [`eval/baseline_2026-11-22.md`](eval/baseline_2026-11-22.md) (without: 1 of 24, 23 of 24) |
+| Earlier results and tool checks | [`eval/results_2026-11-17.md`](eval/results_2026-11-17.md) |
+| The tests | [`tests/`](tests/) (598 tests, no network calls) |
 
 ---
 
@@ -78,7 +79,7 @@ src/mining_claims_mcp/
 ```
 
 Design choices worth noting:
-- **Tools built around staff questions, not around the API.** For example, "claims near a place" is two tools the model chains (locate, then find near), and find-near uses an IDs-only distance query, fetches records by ID and sorts locally, because sorted distance queries on BLM's 4.4 million records time out.
+- **Tools built around staff questions, not around the API.** For example, "claims near a place" is two tools the model chains (locate, then find near), and find-near uses an IDs-only distance query, fetches records by ID and sorts locally, because sorted distance queries on BLM's 4.4 million records time out. The nationwide partial serial search sorts its matches itself for the same reason.
 - **Inputs are cleaned and validated before any query.** Serials are normalized (`mmc 114339` becomes `MMC114339`), townships and ranges accept the usual written forms, and coordinates outside the United States are rejected with a hint. Single quotes are escaped in every ArcGIS `where` clause.
 - **Tool descriptions are written for the model:** data source, freshness, what each result means, and what to ask next when a search finds nothing or too much.
 - **Errors are structured:** every failure returns a dict with an `error` and a `hint`, never a stack trace.
@@ -104,13 +105,24 @@ The demo video uses a small local browser page to show each tool call as it happ
 ## Evaluation
 
 - **24 questions** in [`eval/questions.md`](eval/questions.md), modeled on the public questions front desk staff answer: messy and legacy serials, ambiguous place names, claim names, township/range/section, mine names that aren't claim names, "can I stake there?", fees, waivers, transfers and MLRS accounts. Each has an expected answer or, for judgment questions, written criteria.
-- **Agent run (Nov 17, 2026):** Claude Opus 5.5 in Claude Code, connected to the local server. 24 of 24 answers had the expected facts and stayed within scope; median 6.7 s per answer. Caveat: the agent had seen the expected answers and graded itself, so a blind run with human grading is still to do.
-- **Scripted tool checks:** [`eval/run_tool_checks.py`](eval/run_tool_checks.py) sends the tool calls each question needs to the live services and checks the key facts in code. 72 of 72 passed over 3 passes (`uv run python eval/run_tool_checks.py --runs 3`).
+- **Same model with and without the server (Nov 22, 2026).** OpenAI's gpt-6-luna answered all 24 questions twice, with the same staff prompt, one question at a time, never seeing the expected answers:
+
+  | | Without the server | With the server |
+  |---|---|---|
+  | Correct (has every expected fact) | 1 of 24 (6 partly right) | **19 of 24** (5 partly right) |
+  | Within scope (nothing made up) | 23 of 24 | **24 of 24** |
+  | Median time per answer | 4.0 s | 5.4 s |
+
+  - **With the server:** [`eval/run_agent_luna.py`](eval/run_agent_luna.py) adds the server's instructions and its five tools (the server runs in the same process, against the live BLM and USGS services). Results: [`eval/agent_luna_2026-11-22.md`](eval/agent_luna_2026-11-22.md). The 5 partial answers had no wrong facts; they left out facts the tools returned (for example that the Dutchess claims are all closed, or the $15 fee for the small miner waiver), and the same model included some of these in earlier checks, so answers vary from run to run. A BLM outage hit questions 17, 18 and 24 during the full run (the model said it couldn't check and made nothing up); they were rerun once the service answered ([`eval/agent_luna_2026-11-22_q8-17-18-24.md`](eval/agent_luna_2026-11-22_q8-17-18-24.md)). The run also found a tool problem: BLM could no longer finish the nationwide serial search sorted (question 8), so the tool now sorts those matches itself; question 8 then passed ([`eval/agent_luna_2026-11-22_q8.md`](eval/agent_luna_2026-11-22_q8.md)).
+  - **Without the server:** [`eval/run_baseline.py`](eval/run_baseline.py), the same questions and prompt with no tools. The model was honest but couldn't answer any claim-record question, sent callers to MLRS for facts the tools return, and quoted an outdated maintenance fee ($165; $200 when checked Nov 15, 2026). Results: [`eval/baseline_2026-11-22.md`](eval/baseline_2026-11-22.md).
+  - Both runs were graded by Claude against the same written criteria and reviewed by the project author (BLM staff).
+- **Second agent run (Nov 17, 2026):** Claude Opus 5.5 in Claude Code, connected to the local server. 24 of 24 answers had the expected facts and stayed within scope; median 6.7 s per answer. Caveat: this agent had seen the expected answers and graded itself, so it is a second result, not the main comparison.
+- **Scripted tool checks:** [`eval/run_tool_checks.py`](eval/run_tool_checks.py) sends the tool calls each question needs to the live services and checks the key facts in code. 72 of 72 passed over 3 passes on Nov 17, 2026 (`uv run python eval/run_tool_checks.py --runs 3`).
 - **Guardrail cases:** SQL-style input, wildcards, a point outside the U.S., and instruction text as a place name were all rejected or handled safely.
-- **Unit tests:** 595 tests in `tests/`, using stand-in service replies (no network), run by CI on every push.
+- **Unit tests:** 598 tests in `tests/`, using stand-in service replies (no network), run by CI on every push.
 - **Link check:** `scripts/check_official_links.py` opens each link in the official pages table and reports any that don't answer 200 (not part of the tests, which never go online).
 
-Full tables: [`eval/results_2026-11-17.md`](eval/results_2026-11-17.md).
+Full tables: [`eval/agent_luna_2026-11-22.md`](eval/agent_luna_2026-11-22.md), [`eval/baseline_2026-11-22.md`](eval/baseline_2026-11-22.md) and [`eval/results_2026-11-17.md`](eval/results_2026-11-17.md).
 
 To rerun:
 
@@ -118,6 +130,8 @@ To rerun:
 uv sync --group dev
 uv run pytest tests/ -v
 uv run python eval/run_tool_checks.py --runs 3
+uv run python eval/run_baseline.py     # needs an OpenAI API key
+uv run python eval/run_agent_luna.py   # needs an OpenAI API key
 ```
 
 ---

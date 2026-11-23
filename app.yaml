@@ -1,0 +1,38 @@
+# Databricks Apps deployment configuration for an MCP server.
+# https://docs.databricks.com/aws/en/dev-tools/databricks-apps/app-runtime
+#
+# This copy sits at the repo root because Databricks reads app.yaml from the
+# root of the source it deploys. We deploy from the Git repo linked to the
+# Databricks app. (deploy/databricks/app.yaml is the template's copy for its
+# deploy script; keep the two in sync.)
+#
+# The MCP endpoint is available at:
+#   https://<app-url>/mcp    (Streamable HTTP, stateless)
+#   https://<app-url>/health
+#
+# Databricks automatically injects at runtime:
+#   DATABRICKS_APP_PORT      (defaults to 8000) — copied into PORT below
+#   DATABRICKS_HOST          workspace URL
+#   DATABRICKS_CLIENT_ID     service principal client ID
+#   DATABRICKS_CLIENT_SECRET OAuth secret
+#
+# The `command` puts the package's src/ on PYTHONPATH and launches it as a
+# module; app.py sees PORT and serves streamable-HTTP on that port with /mcp
+# and /health.
+#
+# /app/python/source_code is where Databricks places the deployed source. This
+# path is not in the Databricks docs; confirm it in the app logs after the
+# first Git-based deploy.
+#
+# PORTABILITY: this file is Databricks-only. The server code (src/) reads the
+# generic PORT variable; the command below copies Databricks' DATABRICKS_APP_PORT
+# into PORT (default 8000). Other hosts set PORT themselves (see Dockerfile).
+#
+# The package is `mining_claims_mcp`. If it is renamed again, update the module
+# path below.
+command:
+  [
+    "/bin/sh",
+    "-c",
+    "export PORT=${DATABRICKS_APP_PORT:-8000} && export PYTHONPATH=/app/python/source_code/src:$PYTHONPATH && python -m mining_claims_mcp.app",
+  ]

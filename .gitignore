@@ -1,0 +1,57 @@
+# Virtual environments
+.venv/
+venv/
+
+# Environment variables (keep .env.example, never commit .env)
+.env
+.env.*
+!.env.example
+deploy/**/.env
+deploy/**/eval.env
+
+# Databricks CLI config and local sync state
+.databrickscfg
+.databricks/
+
+# Claude Code personal settings
+.claude/settings.local.json
+
+# Deploy kit generated artifacts
+deploy/ibm/local-mcp-toolkit/_stage/
+deploy/ibm/local-mcp-toolkit/_toolkit.generated.yaml
+deploy/**/eval-results/
+
+
+# IBM Bob IDE directory (skills and MCP tool definition)
+.bob/
+
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Ruff
+.ruff_cache/
+
+# IDE / editor
+.vscode/
+.idea/
+.zed/
+*.swp
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Demo video recordings and edits (large; kept out of Git)
+video/

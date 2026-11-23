@@ -1,0 +1,714 @@
+{
+  "started": "2026-11-17T22:11:18-07:00",
+  "runs": [
+    {
+      "1": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.37
+        ],
+        "total_seconds": 0.37,
+        "tool_calls": 1
+      },
+      "2": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "3": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "4": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.26
+        ],
+        "total_seconds": 0.26,
+        "tool_calls": 1
+      },
+      "5": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "6": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "7": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.69
+        ],
+        "total_seconds": 1.69,
+        "tool_calls": 1
+      },
+      "8": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.71,
+          33.35
+        ],
+        "total_seconds": 36.06,
+        "tool_calls": 2
+      },
+      "9": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27,
+          0.28,
+          0.25,
+          0.27,
+          0.26,
+          0.27,
+          0.26,
+          0.28,
+          0.26,
+          0.29
+        ],
+        "total_seconds": 2.69,
+        "tool_calls": 10
+      },
+      "10": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.26
+        ],
+        "total_seconds": 0.26,
+        "tool_calls": 1
+      },
+      "11": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.88,
+          0.53
+        ],
+        "total_seconds": 1.41,
+        "tool_calls": 2
+      },
+      "12": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.09
+        ],
+        "total_seconds": 1.09,
+        "tool_calls": 1
+      },
+      "13": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          6.43
+        ],
+        "total_seconds": 6.43,
+        "tool_calls": 1
+      },
+      "14": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.13,
+          1.03
+        ],
+        "total_seconds": 3.16,
+        "tool_calls": 2
+      },
+      "15": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.26
+        ],
+        "total_seconds": 1.26,
+        "tool_calls": 1
+      },
+      "16": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.28
+        ],
+        "total_seconds": 1.28,
+        "tool_calls": 1
+      },
+      "17": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.12
+        ],
+        "total_seconds": 2.12,
+        "tool_calls": 1
+      },
+      "18": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.37,
+          1.34,
+          0.56,
+          0.01
+        ],
+        "total_seconds": 3.28,
+        "tool_calls": 4
+      },
+      "19": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "20": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "21": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "22": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "23": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "24": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.07,
+          2.19,
+          0.0,
+          0.0
+        ],
+        "total_seconds": 3.26,
+        "tool_calls": 4
+      }
+    },
+    {
+      "1": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "2": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "3": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.3
+        ],
+        "total_seconds": 0.3,
+        "tool_calls": 1
+      },
+      "4": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.25
+        ],
+        "total_seconds": 0.25,
+        "tool_calls": 1
+      },
+      "5": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.26
+        ],
+        "total_seconds": 0.26,
+        "tool_calls": 1
+      },
+      "6": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "7": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.65
+        ],
+        "total_seconds": 1.65,
+        "tool_calls": 1
+      },
+      "8": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.64,
+          33.25
+        ],
+        "total_seconds": 35.89,
+        "tool_calls": 2
+      },
+      "9": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.26,
+          0.28,
+          0.26,
+          0.3,
+          0.25,
+          0.27,
+          0.28,
+          0.28,
+          0.27,
+          0.25
+        ],
+        "total_seconds": 2.7,
+        "tool_calls": 10
+      },
+      "10": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "11": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.81,
+          0.53
+        ],
+        "total_seconds": 1.34,
+        "tool_calls": 2
+      },
+      "12": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.1
+        ],
+        "total_seconds": 1.1,
+        "tool_calls": 1
+      },
+      "13": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          5.01
+        ],
+        "total_seconds": 5.01,
+        "tool_calls": 1
+      },
+      "14": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.1,
+          1.07
+        ],
+        "total_seconds": 3.17,
+        "tool_calls": 2
+      },
+      "15": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.22
+        ],
+        "total_seconds": 1.22,
+        "tool_calls": 1
+      },
+      "16": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.23
+        ],
+        "total_seconds": 1.23,
+        "tool_calls": 1
+      },
+      "17": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.1
+        ],
+        "total_seconds": 2.1,
+        "tool_calls": 1
+      },
+      "18": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.29,
+          1.35,
+          0.61,
+          0.0
+        ],
+        "total_seconds": 3.25,
+        "tool_calls": 4
+      },
+      "19": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "20": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "21": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "22": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "23": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "24": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.08,
+          2.06,
+          0.0,
+          0.0
+        ],
+        "total_seconds": 3.14,
+        "tool_calls": 4
+      }
+    },
+    {
+      "1": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.26
+        ],
+        "total_seconds": 0.26,
+        "tool_calls": 1
+      },
+      "2": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.26
+        ],
+        "total_seconds": 0.26,
+        "tool_calls": 1
+      },
+      "3": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.24
+        ],
+        "total_seconds": 0.24,
+        "tool_calls": 1
+      },
+      "4": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "5": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.29
+        ],
+        "total_seconds": 0.29,
+        "tool_calls": 1
+      },
+      "6": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.27
+        ],
+        "total_seconds": 0.27,
+        "tool_calls": 1
+      },
+      "7": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.67
+        ],
+        "total_seconds": 1.67,
+        "tool_calls": 1
+      },
+      "8": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.68,
+          33.58
+        ],
+        "total_seconds": 36.26,
+        "tool_calls": 2
+      },
+      "9": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.29,
+          0.26,
+          0.33,
+          0.26,
+          0.26,
+          0.25,
+          0.26,
+          0.27,
+          0.31,
+          0.26
+        ],
+        "total_seconds": 2.75,
+        "tool_calls": 10
+      },
+      "10": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.26
+        ],
+        "total_seconds": 0.26,
+        "tool_calls": 1
+      },
+      "11": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.86,
+          0.54
+        ],
+        "total_seconds": 1.4,
+        "tool_calls": 2
+      },
+      "12": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.94
+        ],
+        "total_seconds": 0.94,
+        "tool_calls": 1
+      },
+      "13": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          4.79
+        ],
+        "total_seconds": 4.79,
+        "tool_calls": 1
+      },
+      "14": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.1,
+          1.08
+        ],
+        "total_seconds": 3.18,
+        "tool_calls": 2
+      },
+      "15": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.22
+        ],
+        "total_seconds": 1.22,
+        "tool_calls": 1
+      },
+      "16": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.21
+        ],
+        "total_seconds": 1.21,
+        "tool_calls": 1
+      },
+      "17": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          2.14
+        ],
+        "total_seconds": 2.14,
+        "tool_calls": 1
+      },
+      "18": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.36,
+          1.33,
+          0.57,
+          0.0
+        ],
+        "total_seconds": 3.26,
+        "tool_calls": 4
+      },
+      "19": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "20": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "21": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "22": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "23": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          0.0
+        ],
+        "total_seconds": 0.0,
+        "tool_calls": 1
+      },
+      "24": {
+        "passed": true,
+        "failures": [],
+        "call_seconds": [
+          1.05,
+          2.17,
+          0.0,
+          0.0
+        ],
+        "total_seconds": 3.22,
+        "tool_calls": 4
+      }
+    }
+  ],
+  "finished": "2026-11-17T22:14:31-07:00"
+}
